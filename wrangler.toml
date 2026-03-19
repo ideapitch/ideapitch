@@ -1,0 +1,6 @@
+name = "ideapitch"
+main = "functions/oauth.js"
+compatibility_date = "2026-03-18"
+
+[vars]
+GITHUB_CLIENT_ID = "Ov23lieD7jNNhSPtiKgy"

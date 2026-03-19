@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IdeaPitch — Ideas that don't exist yet</title>
+  <meta name="description" content="An open board where anyone can post an idea for something that doesn't exist yet. Builders browse and pick what to build next.">
+  <meta property="og:title" content="IdeaPitch — Ideas that don't exist yet">
+  <meta property="og:description" content="Post your idea. Let someone build it.">
+  <meta property="og:url" content="https://ideapitch.github.io">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ideapitch.github.io/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://ideapitch.github.io/og-image.svg">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://github.com/ideapitch/ideapitch.github.io" target="_blank">idea<span>pitch</span></a>
+  <div class="header-right">
+    <button class="btn-about" onclick="location.href='/about'">About</button>
+    <div id="userInfo" style="display:none">
+      <img id="userAvatar" src="" alt="">
+      <span id="userName"></span>
+      <button class="btn-logout" onclick="logout()">Sign out</button>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="topbar">
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-dot open"></span>
+        <span id="sOpen" class="stat-n">—</span>
+        <span>open</span>
+      </div>
+      <div class="stat">
+        <span class="stat-dot closed"></span>
+        <span id="sClosed" class="stat-n">—</span>
+        <span>closed</span>
+      </div>
+    </div>
+    <div class="filters">
+      <button class="f-btn active" onclick="setFilter('top', this)">↑ Top</button>
+      <button class="f-btn" onclick="setFilter('new', this)">✦ New</button>
+      <button class="f-btn f-closed" onclick="setFilter('closed', this)">Closed</button>
+    </div>
+  </div>
+
+  <div class="post-box" id="postBox">
+    <div class="post-header">💡 Post a new idea</div>
+    <textarea id="ideaInput" maxlength="500"
+      placeholder="Describe the app, site, or tool you wish existed..."
+      oninput="onType()"></textarea>
+    <div class="post-footer">
+      <span id="charCount">0 / 500</span>
+      <button class="btn-post" id="submitBtn" onclick="submitIdea()" disabled>Submit idea</button>
+    </div>
+  </div>
+
+  <div class="login-nudge" id="loginNudge" style="display:none">
+    <p>Sign in to post ideas and join the discussion.</p>
+    <button class="btn-nudge" onclick="login()">Sign in to post</button>
+  </div>
+
+  <div id="ideasList">
+    <div class="loading"><div class="spinner"></div><span>Loading ideas...</span></div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/auth.js"></script>
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

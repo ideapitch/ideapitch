@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IdeaPitch</title>
+  <meta property="og:image" content="https://ideapitch.github.io/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://ideapitch.github.io/og-image.svg">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/idea.css">
+</head>
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">idea<span>pitch</span></div>
+  <div class="header-right">
+    <button class="btn-about" onclick="location.href='/about'">About</button>
+    <div id="userInfo" style="display:none">
+      <img id="userAvatar" src="" alt="">
+      <span id="userName"></span>
+      <button class="btn-logout" onclick="logout()">Sign out</button>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <button class="btn-back" onclick="location.href='/'">← Back to ideas</button>
+
+  <div id="ideaLoading" class="loading">
+    <div class="spinner"></div>
+    <span>Loading...</span>
+  </div>
+
+  <div id="errorBox" style="display:none"></div>
+
+  <div id="ideaBox" style="display:none" class="idea-box">
+    <div class="idea-box-header">
+      <span id="ideaStatus" class="idea-status"></span>
+      <button id="closeBtn" class="btn-close" style="display:none" onclick="closeIdea()">Close idea</button>
+    </div>
+    <div class="idea-box-body">
+      <p id="ideaText" class="idea-full-text"></p>
+      <div class="idea-meta">
+        <span class="meta-author">
+          <img id="ideaAvatar" src="" alt="">
+          <a id="ideaAuthor" href="" target="_blank"></a>
+        </span>
+        <span id="ideaDate" class="meta-date"></span>
+        <div class="vote-row">
+          <button id="voteBtn" class="btn-vote" title="Upvote">▲</button>
+          <span id="voteCount" class="vote-count">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="commentsSection" class="comments-section" style="display:none">
+    <div class="comments-header" id="commentsHeader">Comments</div>
+    <div id="commentsList"></div>
+    <div id="commentFormArea"></div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="/js/auth.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/idea.js"></script>
+</body>
+</html>

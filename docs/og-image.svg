@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#388bfd" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#24292f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bulbGrad" cx="35%" cy="28%" r="70%">
+      <stop offset="0%" stop-color="#ddf4ff"/>
+      <stop offset="40%" stop-color="#79c0ff"/>
+      <stop offset="100%" stop-color="#1f6feb"/>
+    </radialGradient>
+    <radialGradient id="shineGrad" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="white" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#24292f"/>
+
+  <!-- Subtle grid lines -->
+  <g stroke="#30363d" stroke-width="1" opacity="0.5">
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+  </g>
+
+  <!-- Glow -->
+  <ellipse cx="600" cy="315" rx="400" ry="300" fill="url(#glow)"/>
+
+  <!-- Bulb -->
+  <g transform="translate(470, 100) scale(0.5)">
+    <ellipse cx="256" cy="210" rx="155" ry="145" fill="#388bfd" opacity="0.15"/>
+    <path d="M 256 72 C 162 72 100 142 100 218 C 100 272 128 316 172 344 L 172 346 C 172 346 176 368 180 374 L 332 374 C 336 368 340 346 340 346 L 340 344 C 384 316 412 272 412 218 C 412 142 350 72 256 72 Z" fill="url(#bulbGrad)"/>
+    <path d="M 256 72 C 162 72 100 142 100 218 C 100 272 128 316 172 344 L 172 346 C 172 346 176 368 180 374 L 332 374 C 336 368 340 346 340 346 L 340 344 C 384 316 412 272 412 218 C 412 142 350 72 256 72 Z" fill="url(#shineGrad)"/>
+    <polyline points="220,310 256,250 292,310" stroke="white" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+    <rect x="180" y="374" width="152" height="26" rx="6" fill="#388bfd"/>
+    <rect x="188" y="404" width="136" height="22" rx="11" fill="#2f81f7"/>
+    <rect x="200" y="430" width="112" height="20" rx="10" fill="#1f6feb"/>
+    <rect x="214" y="454" width="84" height="18" rx="9" fill="#1158c7"/>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="310" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="white" text-anchor="middle" letter-spacing="-2">IdeaPitch</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="375" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#8b949e" text-anchor="middle">An open board for ideas that don't exist yet</text>
+
+  <!-- URL -->
+  <text x="600" y="460" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#58a6ff" text-anchor="middle">ideapitch.github.io</text>
+</svg>

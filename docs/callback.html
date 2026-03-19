@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>IdeaPitch — Signing in...</title>
+  <style>
+    body { background: #fff; color: #656d76; font-family: -apple-system, system-ui, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-size: 0.85rem; }
+    .wrap { display: flex; align-items: center; gap: 0.7rem; }
+    .spinner { width: 18px; height: 18px; border: 2px solid #d0d7de; border-top-color: #0969da; border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="spinner"></div>
+    <span id="msg">Signing in...</span>
+  </div>
+  <script src="js/auth.js"></script>
+  <script>
+    async function handleCallback() {
+      const params = new URLSearchParams(location.search);
+      const code   = params.get('code');
+      const state  = params.get('state');
+      const saved  = localStorage.getItem('oauth_state');
+
+      localStorage.removeItem('oauth_state');
+
+      if (!code || state !== saved) {
+        document.getElementById('msg').textContent = 'Auth failed. Redirecting...';
+        setTimeout(() => location.href = '/', 2000);
+        return;
+      }
+
+      try {
+        const res  = await fetch(`${PROXY_URL}?code=${code}`);
+        const data = await res.json();
+
+        if (data.access_token) {
+          localStorage.setItem('gh_token', data.access_token);
+          const uRes = await fetch('https://api.github.com/user', {
+            headers: { Authorization: `token ${data.access_token}` }
+          });
+          const user = await uRes.json();
+
+          if (!user.login) throw new Error();
+
+          localStorage.setItem('gh_user', JSON.stringify(user));
+          document.getElementById('msg').textContent = `Welcome, ${user.login}!`;
+          setTimeout(() => location.href = '/', 900);
+        } else {
+          throw new Error(data.error || 'No token received');
+        }
+      } catch {
+        localStorage.removeItem('gh_token');
+        localStorage.removeItem('gh_user');
+        document.getElementById('msg').textContent = 'Auth error. Redirecting...';
+        setTimeout(() => location.href = '/', 2000);
+      }
+    }
+
+    handleCallback();
+  </script>
+</body>
+</html>
